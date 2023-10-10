@@ -1,9 +1,12 @@
-# ZonMw
+# ZonMw project description
 food security project.
 This documents will give a more complete overview of the project at hand:
 https://github.com/rendell/ZonMw/blob/main/98%20-%20FINAL%20COVID%20Food%20Security%20Ec%20Div.docx
 
-*Keep in mind that interviews will require the respondent to fill in a consent form*
+## Administrative notes
+- Keep in mind that interviews will require the respondent to fill in a consent form
+- Keep track of hours spend on the project, in case UA HR requests an overview
+
 
 # Siguerd
 
