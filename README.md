@@ -21,6 +21,38 @@ It provides the questions that you will be looking into at Qredits.
 -     indegenous knowledge
 -     impact of COVID-19
 
+**Potential interview subjects:**
+
+*Farmers:*
+James Ramos (Cunucu di Jimmy)
+James Ocalia (ex-Goshen experience)
+Kris Facun (modern production methods)
+Giovanni Kock (CEDE Aruba)
+Kirby Barrera (ex-TNO)
+Jair Britten (hobby farmer)
+
+*Processors:*
+None, to my knowledge
+
+*Distributors:*
+James Ocalia (Goshen experience)
+
+*Retailers:* 
+Ling n Sons supermarket 
+Daily fresh
+Superfood
+Small neighbourhood supermarkets
+
+*(Intermediate) Consumers:*
+Urvin Croes (Infini)
+James Ocalia (ex-Goshen experience)
+Ewald Biemans (hotelier)
+Carolina Raven (food and beverage association)
+
+*Relevant agencies:*
+Nathalee Maduro (Santa Rosa)
+Nathalie Harms (Qredits)
+Sharon Meijer (Exprodesk)
 
 ## Task 2: Consumer survey
 Take the lead on creating a consumer survey regarding the consumption of the comcomber chikito. For your timeline you might consider splitting this in various goals:
