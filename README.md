@@ -6,19 +6,27 @@ https://github.com/rendell/ZonMw/blob/main/98%20-%20FINAL%20COVID%20Food%20Secur
 ## Administrative notes
 - Keep in mind that interviews will require the respondent to fill in a consent form
 - Keep track of hours spend on the project, in case UA HR requests an overview
+- Please draft a timeline for the duration of the project outlining when you expect to complete your goals
 
 
 # Siguerd
 
-## Task 1: 
+## Task 1: Producer interviews
 
 This amendement is particularly relevant:
 https://github.com/rendell/ZonMw/blob/main/68%20-%20Request%20for%20amendment%20to%20research%20proposal%20.docx
 It provides the questions that you will be looking into at Qredits.
+- Keep in mind that we are particularly interested in including insights on:
+-     the use of new technology versus traditional farming techniques
+-     indegenous knowledge
+-     impact of COVID-19
 
-## Task 2: 
-Take the lead on creating a consumer survey regarding the consumption of the comcomber chikito.
 
+## Task 2: Consumer survey
+Take the lead on creating a consumer survey regarding the consumption of the comcomber chikito. For your timeline you might consider splitting this in various goals:
+- Complete survey questionaire
+- survey execution period
+- data analysis
 
 
 # Amadee
