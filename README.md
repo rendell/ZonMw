@@ -54,6 +54,7 @@ It provides the questions that you will be looking into at Qredits.
 - Nathalee Maduro (Santa Rosa)
 - Nathalie Harms (Qredits)
 - Sharon Meijer (Exprodesk)
+- Tirso Tromp (Aruba Tourism Authority - Europe)
 
 ## Task 2: Consumer survey
 Take the lead on creating a consumer survey regarding the consumption of the comcomber chikito. For your timeline you might consider splitting this in various goals:
