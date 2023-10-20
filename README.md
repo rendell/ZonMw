@@ -6,7 +6,7 @@ https://github.com/rendell/ZonMw/blob/main/98%20-%20FINAL%20COVID%20Food%20Secur
 ## Administrative notes
 - Keep in mind that interviews will require the respondent to fill in a consent form
 - Keep track of hours spend on the project, in case UA HR requests an overview
-- Please draft a timeline for the duration of the project outlining when you expect to complete your goals
+- Please draft a timeline for the duration of the project outlining when you expect to complete your goals by Friday the 17th of October.
 
 
 # Siguerd
