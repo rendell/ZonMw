@@ -22,6 +22,7 @@ It provides the questions that you will be looking into at Qredits.
 -     impact of COVID-19
 
 **Potential interview subjects:**
+This list is not exhaustive and ofcourse your suggestions are welcome here.
 
 *Farmers:*
 - James Ramos (Cunucu di Jimmy)
