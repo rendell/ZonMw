@@ -4,7 +4,7 @@ This documents will give a more complete overview of the project at hand:
 https://github.com/rendell/ZonMw/blob/main/98%20-%20FINAL%20COVID%20Food%20Security%20Ec%20Div.docx
 
 ## Administrative notes
-- Keep in mind that interviews will require the respondent to fill in a consent form
+- Keep in mind that interviews will require the respondent to fill in a consent form, which is to be stored digitally on the UA servers.
 - Keep track of hours spend on the project, in case UA HR requests an overview
 - Please draft a timeline for the duration of the project outlining when you expect to complete your goals by Friday the 27th of October.
 
@@ -58,8 +58,6 @@ This list is not exhaustive and ofcourse your suggestions are welcome here.
 - Nathalie Harms (Qredits)
 - Sharon Meijer (Exprodesk)
 - Tirso Tromp (Aruba Tourism Authority - Europe)
-
-Keep in mind that a consent form must be signed by the recipient and stored digitally on the UA servers for reference.
 
 
 ## Task 2: Consumer survey
