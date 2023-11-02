@@ -25,6 +25,7 @@ It provides the questions that you will be looking into at Qredits.
 This list is not exhaustive and ofcourse your suggestions are welcome here.
 
 *Farmers:*
+- Koolman farm 
 - James Ramos (Cunucu di Jimmy)
 - James Ocalia (ex-Goshen experience)
 - Kris Facun (modern production methods)
@@ -50,12 +51,14 @@ This list is not exhaustive and ofcourse your suggestions are welcome here.
 - James Ocalia (ex-Goshen experience)
 - Ewald Biemans (hotelier)
 - Carolina Raven (food and beverage association)
+- Santos
 
 *Relevant agencies:*
 - Nathalee Maduro (Santa Rosa)
 - Nathalie Harms (Qredits)
 - Sharon Meijer (Exprodesk)
 - Tirso Tromp (Aruba Tourism Authority - Europe)
+
 
 ## Task 2: Consumer survey
 Take the lead on creating a consumer survey regarding the consumption of the comcomber chikito. For your timeline you might consider splitting this in various goals:
