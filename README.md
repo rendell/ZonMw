@@ -59,12 +59,15 @@ This list is not exhaustive and ofcourse your suggestions are welcome here.
 - Sharon Meijer (Exprodesk)
 - Tirso Tromp (Aruba Tourism Authority - Europe)
 
+Keep in mind that a consent form must be signed by the recipient and stored digitally on the UA servers for reference.
+
 
 ## Task 2: Consumer survey
 Take the lead on creating a consumer survey regarding the consumption of the comcomber chikito. For your timeline you might consider splitting this in various goals:
 - Complete survey questionaire
 - survey execution period
 - data analysis
+
 
 
 # Amadee
