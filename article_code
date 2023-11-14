@@ -1,0 +1,74 @@
+---
+title: "ZonMw article"
+format: html
+editor: visual
+---
+
+Libraries
+```{r}
+library(tidyverse)
+```
+
+Import data
+```{r}
+CARICOMWFP <- read.csv("~/ZonMw/CARICOMWFP.csv")
+```
+
+Filter
+```{r}
+Round1 <- filter(CARICOMWFP,Round=="1")
+Round2 <- filter(CARICOMWFP,Round=="2")
+Round3 <- filter(CARICOMWFP,Round=="3")
+Round4 <- filter(CARICOMWFP,Round=="4")
+Round5 <- filter(CARICOMWFP,Round=="5")
+```
+
+
+Checking the number of observations per island for each iteration of the survey
+First survey was conducted in April 2020, though participation from the CAS islands was mininal.
+Second survey was conducted in June 2020, having the strongest response.
+Third survey is also worth analyzing
+Fifth survey is worth analyzing (August 2022)
+
+So 2,3 and 5. 
+
+```{r}
+table(CARICOMWFP$Round, CARICOMWFP$Which.country.do.you.live.in.)
+```
+
+
+Thus dropped surveys 1 and 5
+```{r}
+CARICOMWFP<-CARICOMWFP %>% filter(Round=="2" | Round=="3" | Round=="5")
+```
+
+
+```{r}
+table(CARICOMWFP$Round, CARICOMWFP$Which.country.do.you.live.in., CARICOMWFP$In.the.past.7.days..has.there.been.a.time.when.you.or.your.household.could.not.access.the.markets.grocery.stores.)
+```
+Calculating percentages for Aruba the results are verified (Round 2)
+```{r}
+# Aruba
+31/(31+304)*100
+13/(13+79)*100
+16/(16+51)*100
+# Cur
+21/(21+150)*100
+5/(5+59)*100
+60/(60+43)*100
+# SXM
+46/(46+116)*100
+21/(21+67)*100
+5/(5+37)*100
+
+Countries <- c("Aruba","Curacao","Sint Maarten")
+Round_2 <- c(9.2,12.3,28.4)
+Round_5 <- c(28.4,23.9,11.9)
+sevendays<- as.tibble(cbind(Countries,Round_2,Round_5))
+```
+
+
+```{r}
+table(CARICOMWFP$Round, CARICOMWFP$Which.country.do.you.live.in., CARICOMWFP$Has.there.been.any.changes.in.the.costs.of.food.items.over.the.past.2.weeks.)
+```
+
