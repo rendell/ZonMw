@@ -7,11 +7,13 @@ editor: visual
 Libraries
 ```{r}
 library(tidyverse)
+library(ggrepel)
 ```
 
 Import data
 ```{r}
 CARICOMWFP <- read.csv("~/ZonMw/CARICOMWFP.csv")
+Caribbean_matrix <- read.csv("~/ZonMw/Caribbean_matrix.csv")
 ```
 
 Filter
@@ -37,9 +39,9 @@ table(CARICOMWFP$Round, CARICOMWFP$Which.country.do.you.live.in.)
 ```
 
 
-Thus dropped surveys 1 and 5
+Thus dropped surveys 1 and 4
 ```{r}
-CARICOMWFP<-CARICOMWFP %>% filter(Round=="2" | Round=="3" | Round=="5")
+CARICOMWFP<-CARICOMWFP %>% filter(Round=="2" | Round=="5")
 ```
 
 
@@ -70,5 +72,32 @@ sevendays<- as.tibble(cbind(Countries,Round_2,Round_5))
 
 ```{r}
 table(CARICOMWFP$Round, CARICOMWFP$Which.country.do.you.live.in., CARICOMWFP$Has.there.been.any.changes.in.the.costs.of.food.items.over.the.past.2.weeks.)
+```
+
+```{r}
+table(CARICOMWFP$Round, CARICOMWFP$Which.country.do.you.live.in.,CARICOMWFP$Have.you.changed.your.shopping.behaviour.compared.to.before.COVID.19.)
+```
+                No    Yes
+Curacao         40    131   77%
+Aruba           49    288   85%  
+Sint Maarten    18    146   89%
+
+
+```{r}
+table(CARICOMWFP$Round, 
+      CARICOMWFP$Which.country.do.you.live.in.,
+      CARICOMWFP$buying_larger_quantities_than_u)
+```
+
+
+```{r}
+ggplot(Caribbean_matrix, aes(x = Food, y = Tourism, size = GDP, color=Label)) +  geom_point() + 
+  theme_bw()+
+  geom_label_repel(aes(label = Country), size = 4)+ theme(legend.position = "none")+ ggtitle("Tourism and Food production in the Caribbean")+ 
+  labs(y = "Tourism receipts (% of total exports)", x = "Food production (normalized value added food production as a share of GDP)")+
+  scale_color_manual(values = c("black", "#2596be"))+
+  labs(caption = "Size of bubble depicts GDP per capita. 
+       Data source: World Bank Group (2023)")
+
 ```
 
