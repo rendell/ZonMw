@@ -48,6 +48,8 @@ This list is not exhaustive and ofcourse your suggestions are welcome here.
 
 *(Intermediate) Consumers:*
 - Urvin Croes (Infini)
+- Taste my Aruba
+- Papiamento Restaurant
 - James Ocalia (ex-Goshen experience)
 - Ewald Biemans (hotelier)
 - Carolina Raven (food and beverage association)
