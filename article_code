@@ -101,3 +101,214 @@ ggplot(Caribbean_matrix, aes(x = Food, y = Tourism, size = GDP, color=Label)) + 
 
 ```
 
+# Function for percentage change 
+```{r}
+plot_percentage_comparison <- function(variable_of_interest, caribbean_percentage) {
+  # Filter data for relevant variables
+  selected_vars <- c("Which.country.do.you.live.in.", variable_of_interest)
+  
+  filtered_data <- CARICOMWFP %>%
+    filter(Round == "2", Which.country.do.you.live.in. %in% c("Aruba", "Curacao", "Sint Maarten")) %>%
+    select(all_of(selected_vars))
+  
+  # Define the order of countries
+  country_order <- c("Curacao", "Aruba", "Sint Maarten")
+  
+  # Convert the variable of interest to lowercase for case-insensitive comparison
+  variable_of_interest_lower <- tolower(variable_of_interest)
+  
+  # Calculate percentages
+  percentage_data <- filtered_data %>%
+    group_by(Which.country.do.you.live.in.) %>%
+    summarise(Percentage = sum(tolower(get(variable_of_interest)) %in% c("yes", "yes","1")) / n() * 100) %>%
+    arrange(factor(Which.country.do.you.live.in., levels = country_order))  # Arrange by the defined order
+  
+  # Create a data frame for Caribbean region percentage
+  caribbean_percentage_data <- data.frame(
+    Which.country.do.you.live.in. = "Caribbean",
+    Percentage = caribbean_percentage
+  )
+  
+  # Set fill color outside aes mapping
+  fill_color <- "#2596BE"
+  
+ # Visualize with ggplot2
+ggplot() +
+  geom_col(data = percentage_data, aes(x = factor(Which.country.do.you.live.in., levels = country_order), y = Percentage, fill = "CAS islands"),
+           position = "dodge") +
+  geom_text(data = percentage_data, aes(x = factor(Which.country.do.you.live.in., levels = country_order), y = Percentage,
+                                        label = sprintf("%.1f%%", Percentage)),
+            position = position_dodge(width = 0.9), vjust = -0.5) +
+  geom_hline(data = caribbean_percentage_data, aes(yintercept = Percentage, color = "Caribbean"),
+             linetype = "dashed", size = 1.2) +
+  geom_text(data = caribbean_percentage_data, aes(x = 2, y = Percentage,
+                                                   label = sprintf("%.1f%%", Percentage)),
+            vjust = -0.5, color = "black", size = 4, hjust = -0.5) +  # Label for Caribbean value
+  scale_y_continuous(sec.axis = sec_axis(~., name = "Caribbean Region %")) +  # Secondary y-axis
+  ggtitle(NULL) +  # Remove the overall title
+  labs(x = "", y = "") +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        axis.title.y = element_blank(),  # Remove y-axis title
+        axis.text.y = element_blank(),   # Remove y-axis labels
+        axis.ticks.y = element_blank(),  # Remove y-axis ticks
+        legend.position = "bottom",      # Move legend to the bottom
+        legend.direction = "horizontal",  # Set legend direction to horizontal
+        legend.title = element_blank()) +  # Remove legend title
+  scale_fill_manual(values = fill_color) +  # Set fill color for countries
+  scale_color_manual(values = "black", name = "CAS islands", labels = c("Caribbean")) +  # Set color for Caribbean line and legend label
+  guides(fill = guide_legend(override.aes = list(fill = fill_color), title = NULL),  # Remove fill legend title
+         color = guide_legend(override.aes = list(color = "black")))  # Remove color legend title
+}
+```
+
+# Shopping behaviour
+```{r}
+# Example usage:
+plot_percentage_comparison("Have.you.changed.your.shopping.behaviour.compared.to.before.COVID.19.", 86)
+```
+
+# livelihood
+```{r}
+# Example usage:
+plot_percentage_comparison("Was.your.ability.to.carry.out.livelihoods.activities.affected.in.the.last.2.weeks.", 54)
+```
+## Movement restrictions
+
+```{r}
+plot_percentage_comparison <- function(variable_of_interest, caribbean_percentage) {
+  # Filter data for relevant variables
+  selected_vars <- c("Which.country.do.you.live.in.", variable_of_interest)
+  
+  filtered_data <- CARICOMWFP %>%
+    filter(
+      Round == "2",
+      Which.country.do.you.live.in. %in% c("Aruba", "Curacao", "Sint Maarten"),
+      Was.your.ability.to.carry.out.livelihoods.activities.affected.in.the.last.2.weeks. == "yes"
+    ) %>%
+    select(all_of(selected_vars))
+  
+  # Define the order of countries
+  country_order <- c("Curacao", "Aruba", "Sint Maarten")
+  
+  # Convert the variable of interest to lowercase for case-insensitive comparison
+  variable_of_interest_lower <- tolower(variable_of_interest)
+  
+  # Calculate percentages
+  percentage_data <- filtered_data %>%
+    group_by(Which.country.do.you.live.in.) %>%
+    summarise(Percentage = sum(tolower(get(variable_of_interest)) %in% c("yes", "1")) / n() * 100) %>%
+    arrange(factor(Which.country.do.you.live.in., levels = country_order))  # Arrange by the defined order
+  
+  # Create a data frame for Caribbean region percentage
+  caribbean_percentage_data <- data.frame(
+    Which.country.do.you.live.in. = "Caribbean",
+    Percentage = caribbean_percentage
+  )
+  
+  # Set fill color outside aes mapping
+  fill_color <- "#2596BE"
+  
+ # Visualize with ggplot2
+ggplot() +
+  geom_col(data = percentage_data, aes(x = factor(Which.country.do.you.live.in., levels = country_order), y = Percentage, fill = "CAS islands"),
+           position = "dodge") +
+  geom_text(data = percentage_data, aes(x = factor(Which.country.do.you.live.in., levels = country_order), y = Percentage,
+                                        label = sprintf("%.1f%%", Percentage)),
+            position = position_dodge(width = 0.9), vjust = -0.5) +
+  geom_hline(data = caribbean_percentage_data, aes(yintercept = Percentage, color = "Caribbean"),
+             linetype = "dashed", size = 1.2) +
+  geom_text(data = caribbean_percentage_data, aes(x = 2, y = Percentage,
+                                                   label = sprintf("%.1f%%", Percentage)),
+            vjust = -0.5, color = "black", size = 4, hjust = -0.5) +  # Label for Caribbean value
+  scale_y_continuous(sec.axis = sec_axis(~., name = "Caribbean Region %")) +  # Secondary y-axis
+  ggtitle(NULL) +  # Remove the overall title
+  labs(x = "", y = "") +
+  theme_minimal() +
+  theme(panel.grid = element_blank(),
+        axis.title.y = element_blank(),  # Remove y-axis title
+        axis.text.y = element_blank(),   # Remove y-axis labels
+        axis.ticks.y = element_blank(),  # Remove y-axis ticks
+        legend.position = "bottom",      # Move legend to the bottom
+        legend.direction = "horizontal",  # Set legend direction to horizontal
+        legend.title = element_blank()) +  # Remove legend title
+  scale_fill_manual(values = fill_color) +  # Set fill color for countries
+  scale_color_manual(values = "black", name = "CAS islands", labels = c("Caribbean")) +  # Set color for Caribbean line and legend label
+  guides(fill = guide_legend(override.aes = list(fill = fill_color), title = NULL),  # Remove fill legend title
+         color = guide_legend(override.aes = list(color = "black")))  # Remove color legend title
+}
+
+```
+
+
+```{r}
+# Movement restrictions
+plot_percentage_comparison("lhood_reasons_movement_restrictions", 40)
+```
+## Concerns leaving the house
+```{r}
+# Concerns leaving the house
+plot_percentage_comparison("lhood_reasons_concerned_about_going_out_of_th1" , 33)
+```
+
+# Prices
+```{r}
+create_percentage_plot <- function(data, variable_of_interest, caribbean_percentage) {
+  # Filter data for relevant variables
+  selected_vars <- c("Which.country.do.you.live.in.", variable_of_interest)
+  
+  filtered_data <- data %>%
+    filter(Round == "3", Which.country.do.you.live.in. %in% c("Aruba", "Curacao", "Sint Maarten")) %>%
+    select(all_of(selected_vars))
+  
+  # Define the order of countries
+  country_order <- c("Curacao", "Aruba", "Sint Maarten")
+  
+  # Calculate percentages
+  percentage_data <- filtered_data %>%
+    group_by(Which.country.do.you.live.in.) %>%
+    summarise(Percentage = sum(get(variable_of_interest) == "food_prices_have_increased") / n() * 100) %>%
+    arrange(factor(Which.country.do.you.live.in., levels = country_order))  # Arrange by the defined order
+  
+  # Create a data frame for Caribbean region percentage
+  caribbean_percentage_data <- data.frame(
+    Which.country.do.you.live.in. = "Caribbean",
+    Percentage = caribbean_percentage
+  )
+  
+  # Set fill color outside aes mapping
+  fill_color <- "#2596BE"
+  
+  # Visualize with ggplot2
+ggplot() +
+    geom_col(data = percentage_data, aes(x = factor(Which.country.do.you.live.in., levels = country_order), y = Percentage, fill = "CAS islands"),
+             position = "dodge") +
+    geom_text(data = percentage_data, aes(x = factor(Which.country.do.you.live.in., levels = country_order), y = Percentage,
+                                          label = sprintf("%.1f%%", Percentage)),
+              position = position_dodge(width = 0.9), vjust = -0.5) +
+    geom_hline(data = caribbean_percentage_data, aes(yintercept = Percentage, color = "Caribbean"),
+               linetype = "dashed", size = 1.2) +
+    geom_text(data = caribbean_percentage_data, aes(x = 2, y = Percentage,
+                                                     label = sprintf("%.1f%%", Percentage)),
+              vjust = -0.5, color = "black", size = 4, hjust = -0.5) +  # Label for Caribbean value
+    scale_y_continuous(sec.axis = sec_axis(~., name = "Caribbean Region %")) +  # Secondary y-axis
+    ggtitle(NULL) +  # Remove the overall title
+    labs(x = "", y = "") +
+    theme_minimal() +
+    theme(panel.grid = element_blank(),
+          axis.title.y = element_blank(),  # Remove y-axis title
+          axis.text.y = element_blank(),   # Remove y-axis labels
+          axis.ticks.y = element_blank(),  # Remove y-axis ticks
+          legend.position = "bottom",      # Move legend to the bottom
+          legend.direction = "horizontal",  # Set legend direction to horizontal
+          legend.title = element_blank()) +  # Remove legend title
+    scale_fill_manual(values = fill_color) +  # Set fill color for countries
+    scale_color_manual(values = "black", name = "CAS islands", labels = c("Caribbean")) +  # Set color for Caribbean line and legend label
+    guides(fill = guide_legend(override.aes = list(fill = fill_color), title = NULL),  # Remove fill legend title
+           color = guide_legend(override.aes = list(color = "black")))  # Remove color legend title
+}
+
+# Usage
+create_percentage_plot(CARICOMWFP, "Has.there.been.any.changes.in.the.costs.of.food.items.over.the.past.2.weeks.", 78)
+```
+
