@@ -13,6 +13,24 @@ rm(Locally.grown.small.cucumber.consumer.survey)
 Local <- Local[-1, ]
 ```
 
+# Check if there is a duplicate problem
+```{r}
+# Create a table of IP addresses and their frequencies
+ip_address_table <- table(Local$IP.Address)
+
+# Identify duplicated IP addresses
+duplicates <- ip_address_table[duplicated(ip_address_table) | duplicated(ip_address_table, fromLast = TRUE)]
+
+# Sort the duplicated IP addresses by frequency
+sorted_duplicates <- sort(duplicates, decreasing = TRUE)
+
+# Display the sorted duplicated IP addresses and their frequencies
+print(sorted_duplicates)
+```
+Conclusion: There doesn't seem to be a problem.
+
+
+
 ```{r}
 # Identify the columns to be consolidated
 columns_to_consolidate <- c(
