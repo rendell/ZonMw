@@ -1,0 +1,84 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Comcomber chikito data set
+
+```{r}
+# Load data
+Locally.grown.small.cucumber.consumer.survey <- read.csv("~/ZonMw/Locally grown small cucumber consumer survey.csv")
+Local <- Locally.grown.small.cucumber.consumer.survey
+rm(Locally.grown.small.cucumber.consumer.survey)
+Local <- Local[-1, ]
+```
+
+```{r}
+# Identify the columns to be consolidated
+columns_to_consolidate <- c(
+  paste0("X.", 102:199),   # Columns from X.102 to X.199
+  paste0("X.", 200:949),   # Columns from X.200 to X.949
+  paste0("X.", 950:957)    # Columns from X.950 to X.957
+)
+
+# Exclude "X.100" from the columns to consolidate
+columns_to_consolidate <- setdiff(columns_to_consolidate, "X.100")
+
+# Create a new column 'Consolidated_Info' and fill it with the non-empty values from the specified columns
+Local$Consolidated_Info <- apply(Local[, columns_to_consolidate], 1, function(row) {
+  non_empty_values <- row[row != ""]
+  if (length(non_empty_values) > 0) {
+    return(non_empty_values[1])
+  } else {
+    return("")
+  }
+})
+
+# Remove the specified columns
+columns_to_remove <- c(
+  paste0("X.", 102:199),   # Columns from X.102 to X.199
+  paste0("X.", 200:949),   # Columns from X.200 to X.949
+  paste0("X.", 950:957)    # Columns from X.950 to X.957
+)
+
+Local <- select(Local, -columns_to_remove)
+```
+
+
+# Question: Where you aware before today?
+```{r}
+response_table <- table(Local$Were.you.aware.of.the.locally.grown.small.cucumbers..pictured.above..before.today., Local$X)
+
+# Print the table
+print(response_table)
+
+# Calculate percentages
+total_responses <- sum(response_table)
+percentage_yes <- (sum(response_table[2, ]) / total_responses) * 100
+percentage_no <- (sum(response_table[1, ]) / total_responses) * 100
+
+# Print the percentages
+cat("Percentage of respondents who answered 'Yes':", percentage_yes, "%\n")
+cat("Percentage of respondents who answered 'No':", percentage_no, "%\n")
+```
+```{r}
+Local <- Local %>%
+  mutate(Purchased = paste(Have.you.ever.purchased.or.consumed.locally.grown.small.cucumbers., X.1)) %>%
+  select(-Have.you.ever.purchased.or.consumed.locally.grown.small.cucumbers., -X.1)
+```
+# purchased
+```{r}
+# Load the required packages
+library(dplyr)
+library(stringr)
+
+# Create a pipeline
+percentage_share <- Local %>%
+  filter(Purchased %in% c("Yes ", " No")) %>%
+  count(Purchased) %>%
+  mutate(Percentage = n / sum(n) * 100)
+
+# Print the result
+print(percentage_share)
+```
+
