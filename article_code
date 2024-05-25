@@ -91,15 +91,33 @@ table(CARICOMWFP$Round,
 
 
 ```{r}
-ggplot(Caribbean_matrix, aes(x = Food, y = Tourism, size = GDP, color=Label)) +  geom_point() + 
-  theme_bw()+
-  geom_label_repel(aes(label = Country), size = 4)+ theme(legend.position = "none")+ ggtitle("Tourism and Food production in the Caribbean")+ 
-  labs(y = "Tourism receipts (% of total exports)", x = "Food production (normalized value added food production as a share of GDP)")+
-  scale_color_manual(values = c("black", "#2596be"))+
-  labs(caption = "Size of bubble depicts GDP per capita. 
-       Data source: World Bank Group (2023)")
+# Assuming Caribbean_matrix is your data frame and has the necessary columns
+# Remove Trinidad and Tobago observation
+Caribbean_matrix <- Caribbean_matrix[Caribbean_matrix$Country != "Dominica", ]
 
+# Remove rows with non-finite values in 'Tourism', 'Food', or 'GDP'
+Caribbean_matrix <- Caribbean_matrix[complete.cases(Caribbean_matrix$Tourism, Caribbean_matrix$Food, Caribbean_matrix$GDP), ]
+
+# Remove commas from GDP values
+Caribbean_matrix$GDP <- as.numeric(gsub(",", "", Caribbean_matrix$GDP))
+
+# Create the plot with switched axes
+ggplot(Caribbean_matrix, aes(x = Food, y = Tourism, size = GDP, color = Label)) +  
+  geom_point() + 
+  theme_bw() + 
+  geom_smooth(method = "lm", se = FALSE, color = "blue", linetype = "dashed") +
+  geom_label_repel(aes(label = Country), size = 4) + 
+  theme(legend.position = "none") + 
+  ggtitle("Tourism and Food Production in the Caribbean") + 
+  labs(x = "Food production (normalized value added food production as a share of GDP)", 
+       y = "Tourism receipts (% of total exports)") + 
+  scale_size_continuous(range = c(1, 10)) +  # Adjust the range for better scaling of bubble sizes
+  scale_color_manual(values = c("black", "#2596be")) + 
+  labs(caption = "Size of bubble depicts GDP per capita.\nData source: World Bank Group (2023)")
 ```
+
+
+
 
 # Function for percentage change 
 ```{r}
@@ -311,4 +329,3 @@ ggplot() +
 # Usage
 create_percentage_plot(CARICOMWFP, "Has.there.been.any.changes.in.the.costs.of.food.items.over.the.past.2.weeks.", 78)
 ```
-
